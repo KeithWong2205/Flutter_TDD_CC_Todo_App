@@ -1,0 +1,84 @@
+workflows:
+  android-staging-workflow:
+    name: Android build workflow
+    environment:
+      flutter: 2.3.0-1.0.pre
+    max_build_duration: 60
+    triggering:
+      events:
+        - tag
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: 'staging-*'
+          include: true
+    scripts:
+      - cd . && flutter packages pub get
+      - cd . && flutter pub run environment_config:generate --config-extension=staging
+      - name: Build Android aab release
+        script: |
+          cd . && flutter build appbundle --flavor staging
+      - name: Build Android apk release
+        script: |
+          cd . && flutter build apk --release --flavor staging
+    artifacts:
+      - build/**/outputs/**/*12-release.apk
+      - build/**/outputs/**/*release.aab
+    publishing:
+      email:
+        recipients:
+          - betranthanh@gmail.com
+          - thai.luu@thecollectivec.com
+          - manhtuan17121994@gmail.com
+          - nguyenvanan.tdt@gmail.com
+          - kiet.vuong@thecollectivec.com
+      slack:
+        channel: '#internal-project'
+        notify_on_build_start: true
+        notify:
+          success: true
+          failure: true
+
+  android-prod-workflow:
+    name: Android build workflow
+    environment:
+      flutter: 2.3.0-1.0.pre
+    max_build_duration: 60
+    triggering:
+      events:
+        - tag
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: 'prod-*'
+          include: true
+    scripts:
+      - cd . && flutter packages pub get
+#      - cd . && flutter pub run environment_config:generate --config-extension=prod
+      - name: Build Android aab release
+        script: |
+          cd . && flutter build appbundle --flavor prod
+      - name: Build Android apk release
+        script: |
+          cd . && flutter build apk --release --flavor prod
+    artifacts:
+      - build/**/outputs/**/*12-release.apk
+      - build/**/outputs/**/*release.aab
+    publishing:
+      email:
+        recipients:
+          - betranthanh@gmail.com
+          - thai.luu@thecollectivec.com
+          - manhtuan17121994@gmail.com
+          - nguyenvanan.tdt@gmail.com
+          - kiet.vuong@thecollectivec.com
+      slack:
+        channel: '#internal-project'
+        notify_on_build_start: true
+        notify:
+          success: true
+          failure: true

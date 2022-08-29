@@ -1,0 +1,14 @@
+{
+  "login": {
+    "login": "",
+    "loginSuccess": "",
+    "loginFailed": "",
+    "loginGoogle": "",
+    "loginFacebook": "",
+    "loginApple": ""
+  },
+  "common": {
+    "versionName": "",
+    "buildNumber": ""
+  }
+}

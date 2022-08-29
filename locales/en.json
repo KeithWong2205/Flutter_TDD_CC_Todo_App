@@ -1,0 +1,14 @@
+{
+  "login": {
+    "login": "Login",
+    "loginSuccess": "Login Success",
+    "loginFailed": "Login Failed",
+    "loginGoogle": "Google sign in",
+    "loginFacebook": "Facebook sign in",
+    "loginApple": "Apple sign in"
+  },
+  "common": {
+    "versionName": "Version name",
+    "buildNumber": "Build number"
+  }
+}
