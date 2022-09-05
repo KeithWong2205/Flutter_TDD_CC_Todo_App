@@ -1,2 +1,3 @@
 # Flutter_TDD_CC_Todo_App
- Todo app in Flutter with applied Clean Code Architecture and Test Driven Development
+
+A project ultilize clean code architecture with simple todo list function (Not UI intensive)
